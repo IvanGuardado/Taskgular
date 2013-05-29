@@ -20,7 +20,7 @@
   </style>
 </head>
 
-<body class="container">
+<body class="container" ng-controller="MainCtrl">
 
   <div class="navbar">
     <div class="navbar-inner">
@@ -35,8 +35,8 @@
     </div>
 
     <form class="newForm" ng-show="formVisible">
-        <input placeholder="Task description...">
-        <button class="btn btn-primary">Add</button>
+        <input ng-model="desc" placeholder="Task description...">
+        <button class="btn btn-primary" ng-click="add()">Add</button>
         <button class="btn" ng-click="hideForm()">Cancel</button>
     </form>
   </div>
@@ -44,15 +44,10 @@
   <form class="form-search">
     <input type="text" class="input-medium search-query span4" placeholder="Search task...">
   </form>
-  
-  <ul class="unstyled span8">
-    <li>
-      <div class="span6">Esta es una tarea de prueba de una tarea</div>
-      <a>Remove</a>
-    </li>
-    <li>
-      <div class="span6">Esta es una tarea de prueba de una tarea</div>
-      <a>Remove</a>
+  <ul class="unstyled span8" ng-controller="ListCtrl">
+    <li ng-repeat="task in tasks">
+      <div class="span6">{{task.desc}}</div>
+      <a ng-click="remove($index)">Remove</a>
     </li>
   </ul>
 
