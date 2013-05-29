@@ -6,8 +6,53 @@
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
   <script src="lib/angular/angular.js"></script>
   <script src="app/main.js"></script>
+  <style>
+  li {
+    padding: 10px;
+    background: #F1F1F1;
+    border-bottom: 1px solid #FFF;
+    overflow: hidden;
+  }
+  .newForm {
+    padding: 10px;
+    background: #F1F1F1;
+  }
+  </style>
 </head>
 
-<body ng-controller="MainCtrl">
+<body class="container">
+
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="/">Taskgular</a>
+    </div>
+  </div>
+  
+    
+  <div class="row">
+    <h4 class="span8">My taskgulars<small> <a class="offset1">Add New</a></small></h4>
+  </div>
+
+  <form class="newForm">
+      <input placeholder="Task description...">
+      <button class="btn btn-primary">Add</button>
+      <button class="btn">Cancel</button>
+  </form>
+  
+  <form class="form-search">
+    <input type="text" class="input-medium search-query span4" placeholder="Search task...">
+  </form>
+  
+  <ul class="unstyled span8">
+    <li>
+      <div class="span6">Esta es una tarea de prueba de una tarea</div>
+      <a>Remove</a>
+    </li>
+    <li>
+      <div class="span6">Esta es una tarea de prueba de una tarea</div>
+      <a>Remove</a>
+    </li>
+  </ul>
+
 </body>
 </html>
