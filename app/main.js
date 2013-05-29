@@ -1,10 +1,10 @@
-var sb = angular.module('sb', []);
+var sb = angular.module('sb', ['ngResource']);
 
 sb.controller('MainCtrl', function($scope){
 
 });
 
-sb.controller('AddCtrl', function($scope, tasks){
+sb.controller('AddCtrl', function($scope, $location, Task, tasks){
   $scope.showForm = function(){
     $scope.formVisible = true;
   };
@@ -23,10 +23,21 @@ sb.controller('AddCtrl', function($scope, tasks){
 sb.controller('ListCtrl', function($scope, tasks){
   $scope.tasks = tasks;
   $scope.remove = function(index){
-    tasks.splice(index,1);
+    $scope.tasks.splice(index,1);
   }
 });
 
-sb.factory('tasks', function(){
-  return [{desc:'Esto es una tarea'}, {desc: 'Y otra tarea'}];
-})
+// CRUD API
+sb.factory('Task', function($resource, mongolab, mongolabKey) {
+  return $resource(
+    mongolab + '/tasks/collections/tasks/:id',
+    { apiKey: mongolabKey, id: '@_id.$oid' }
+  );
+});
+
+sb.factory('tasks', function(Task){
+  return Task.query();
+});
+
+sb.constant('mongolab', 'https://api.mongolab.com/api/1/databases');
+sb.constant('mongolabKey', '509e78b5e4b0cd43415dcc43');
