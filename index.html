@@ -28,16 +28,18 @@
     </div>
   </div>
   
-    
-  <div class="row">
-    <h4 class="span8">My taskgulars<small> <a class="offset1">Add New</a></small></h4>
-  </div>
+  
+  <div ng-controller="AddCtrl">
+    <div class="row">
+      <h4 class="span8">My taskgulars<small> <a class="offset1" ng-click="showForm()">Add New</a></small></h4>
+    </div>
 
-  <form class="newForm">
-      <input placeholder="Task description...">
-      <button class="btn btn-primary">Add</button>
-      <button class="btn">Cancel</button>
-  </form>
+    <form class="newForm" ng-show="formVisible">
+        <input placeholder="Task description...">
+        <button class="btn btn-primary">Add</button>
+        <button class="btn" ng-click="hideForm()">Cancel</button>
+    </form>
+  </div>
   
   <form class="form-search">
     <input type="text" class="input-medium search-query span4" placeholder="Search task...">
