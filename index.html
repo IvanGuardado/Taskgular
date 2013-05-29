@@ -42,15 +42,17 @@
     </form>
   </div>
   
-  <form class="form-search">
-    <input type="text" class="input-medium search-query span4" placeholder="Search task...">
-  </form>
-  <ul class="unstyled span8" ng-controller="ListCtrl">
-    <li ng-repeat="task in tasks">
-      <div class="span6">{{task.desc}}</div>
-      <a ng-click="remove($index)">Remove</a>
-    </li>
-  </ul>
+  <div ng-controller="ListCtrl">
+    <form class="form-search">
+      <input ng-model="searchText" type="text" class="input-medium search-query span4" placeholder="Search task...">
+    </form>
+    <ul class="unstyled span8">
+      <li ng-repeat="task in tasks | filter:searchText">
+        <div class="span6">{{task.desc}}</div>
+        <a ng-click="remove($index)">Remove</a>
+      </li>
+    </ul>
+  </div>
 
 </body>
 </html>

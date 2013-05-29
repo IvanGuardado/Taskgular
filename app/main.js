@@ -15,7 +15,11 @@ sb.controller('AddCtrl', function($scope, $location, Task, tasks){
   };
 
   $scope.add = function(){
-    tasks.push({desc: $scope.desc});
+    var task = new Task({desc: $scope.desc});
+    task.$save(function(){
+      $location.path('/');
+    });
+    tasks.push(task);
     $scope.hideForm();
   }
 });
@@ -23,6 +27,7 @@ sb.controller('AddCtrl', function($scope, $location, Task, tasks){
 sb.controller('ListCtrl', function($scope, tasks){
   $scope.tasks = tasks;
   $scope.remove = function(index){
+    $scope.tasks[index].$delete();
     $scope.tasks.splice(index,1);
   }
 });
